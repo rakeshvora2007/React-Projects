@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://fb.me/react-15.2.1.js"></script>
+        <script src="https://fb.me/react-dom-15.2.1.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <title>Building the Note Board</title>
+    </head>
+    <body>
+        <div id='react-container'></div>
+        <script type="text/babel">
+
+	class Note extends React.Component {
+
+
+    edit() {
+      alert("Edit Clicked");
+    }
+
+    remove() {
+      alert("Removing Note");
+    }
+
+	render(){
+		return(
+			<div className="note">
+      <p>{this.props.children}</p>
+      <span>
+			<button type="button" onClick={this.edit}>Edit</button>
+			<button type ="button" onClick={this.remove}>X</button>
+      </span>
+			</div>
+			);
+	}
+
+	}
+
+	ReactDOM.render(<Note>Hello World</Note>, document.getElementById("react-container"));
+
+
+        </script>
+    </body>
+</html>
