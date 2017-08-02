@@ -11,34 +11,91 @@
         <div id='react-container'></div>
         <script type="text/babel">
 
-	class Note extends React.Component {
-
+	var Note = React.createClass ({
+    getInitialState() {
+      return {editing:false}
+    },
 
     edit() {
-      alert("Edit Clicked");
-    }
+      this.setState({editing:true});
+    },
+
+    save() {
+      this.setState({editing:false});
+      var val = this.refs.newText.value;
+      alert(val);
+    },
 
     remove() {
       alert("Removing Note");
-    }
+    },
+
+    renderForm() {
+      return(
+      <div className="note">
+      <textarea ref="newText"></textarea>
+      <button onClick={this.save}>Save</button>
+      </div>
+    );
+    },
+
+    renderDisplay() {
+      return(
+  			<div className="note">
+        <p>{this.props.children}</p>
+        <span>
+  			<button type="button" onClick={this.edit}>Edit</button>
+  			<button type ="button" onClick={this.remove}>X</button>
+        </span>
+  			</div>
+  			);
+    },
 
 	render(){
-		return(
-			<div className="note">
-      <p>{this.props.children}</p>
-      <span>
-			<button type="button" onClick={this.edit}>Edit</button>
-			<button type ="button" onClick={this.remove}>X</button>
-      </span>
-			</div>
-			);
-	}
+    if(this.state.editing){
+      return(this.renderForm());
+    } else {
+      return (this.renderDisplay());
+    }
 
 	}
 
-	ReactDOM.render(<Note>Hello World</Note>, document.getElementById("react-container"));
+})
 
+var Board = React.createClass({
 
+  propTypes: {
+    count: function (props, propName) {
+      if (typeof props[propName] !== "number"){
+        return new Error ("The count must be a number");
+      }
+
+      if (props[propName] > 100) {
+        return Error ("Creating " + props[propName] + " notes is ridiculous");
+      }
+    }
+  },
+
+  getInitialState() {
+    return {
+            notes: [
+              'call me',
+              'work done',
+              'study hard'
+            ]
+          }
+  },
+
+  render() {
+    return (<div className="board">
+              {this.state.notes.map((note, i) => {
+                return <Note key={i}>{note}</Note>
+              })}
+            </div>)
+  }
+})
+
+	ReactDOM.render(<Board count={10} />, document.getElementById("react-container"));
         </script>
     </body>
 </html>
