@@ -1,33 +1,21 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Note from './Note';
 
-var Board = React.createClass({
+class Board extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {notes:[]};
+  }
 
-  propTypes: {
-    count: function (props, propName, componentName, location, propFullName) {
-      if (typeof props[propName] !== "number"){
-        return new Error ("The count must be a number");
-      }
 
-      if (props[propName] > 100) {
-        return Error ("Creating " + props[propName] + " notes is ridiculous");
-      }
-    }
-  },
 
-  getInitialState() {
-    return {
-            notes: []
-          }
-  },
-
-  nextId() {
+  nextId = () => {
     this.uniqueId = this.uniqueId || 0;
     return this.uniqueId++;
-  },
+  }
 
-  add(text) {
+  add = (text) => {
     var notes = [
       ...this.state.notes,
       {
@@ -36,9 +24,9 @@ var Board = React.createClass({
       }
     ]
     this.setState({notes})
-  },
+  }
 
-  update(newText, id) {
+  update = (newText, id) => {
     var notes = this.state.notes.map(
         note => (note.id != id) ?
           note :
@@ -48,21 +36,21 @@ var Board = React.createClass({
           }
     )
     this.setState({notes})
-  },
+  }
 
-  remove(id) {
+  remove = (id) => {
     var notes = this.state.notes.filter(note => note.id != id)
     this.setState({notes})
-  },
+  }
 
-  eachNote(note) {
+  eachNote = (note) => {
     return (<Note key={note.id}
                   id={note.id}
                   onChange={this.update}
                   onRemove={this.remove}>
                   {note.note}
             </Note>)
-  },
+  }
 
   render() {
     return (<div className="board">
@@ -70,6 +58,17 @@ var Board = React.createClass({
               <button onClick= {() => this.add("New Note")}>+</button>
             </div>)
   }
-})
+}
+Board.propTypes = {
+  count:(props, propName, componentName, location, propFullName) => {
+    if (typeof props[propName] !== "number"){
+      return new Error ("The count must be a number");
+    }
+
+    if (props[propName] > 100) {
+      return Error ("Creating " + props[propName] + " notes is ridiculous");
+    }
+  }
+}
 
 export default Board;

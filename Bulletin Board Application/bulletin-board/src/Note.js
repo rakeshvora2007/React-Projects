@@ -1,42 +1,43 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './App.css';
 import Draggable from 'react-draggable'
 
-var Note = React.createClass ({
-  getInitialState() {
-    return {editing:false}
-  },
+class Note extends Component{
+  constructor(props) {
+    super(props)
+    this.state = {editing:false};
+  }
 
   componentWillMount() {
     this.style = {
       right: this.randomBetween (0, window.innerWidth - 150, 'px'),
       top: this.randomBetween(0, window.innerHeight - 150, 'px')
     }
-  },
+  }
 
   componentDidUpdate () {
     if(this.state.editing) {
       this.refs.newText.focus();
       this.refs.newText.select();
     }
-  },
+  }
 
   randomBetween(x,y,s) {
     return (x + Math.ceil(Math.random() * (y-x))) + s
-  },
+  }
 
-  edit() {
+  edit = () => {
     this.setState({editing:true});
-  },
+  };
 
-  save() {
+  save = () => {
     this.props.onChange(this.refs.newText.value, this.props.id);
     this.setState({editing:false});
-  },
+  };
 
-  remove() {
+  remove = () => {
     this.props.onRemove(this.props.id);
-  },
+  }
 
   renderForm() {
     return(
@@ -46,7 +47,7 @@ var Note = React.createClass ({
     <button onClick={this.save}>Save</button>
     </div>
   );
-  },
+  }
 
   renderDisplay() {
     return(
@@ -58,7 +59,7 @@ var Note = React.createClass ({
       </span>
       </div>
       );
-  },
+  }
 
 render(){
   return(<Draggable>
@@ -69,6 +70,6 @@ render(){
 
 }
 
-})
+}
 
 export default Note;
