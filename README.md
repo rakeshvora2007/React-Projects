@@ -1,4 +1,4 @@
-![Image](https://laracasts.com/images/series/circles/do-you-react.png "Logo Title Text 1")
+![Image](http://www.watershed.co.uk/sites/default/files/styles/dshed-collection/public/REACT_logo_4-3_0.jpg?itok=qGtC-MBl "Logo Title Text 1")
 
 
 
