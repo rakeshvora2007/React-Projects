@@ -6,13 +6,19 @@ export default class RunningDayCount extends Component {
     return(
       <div className="running-day-count">
         <div className="total-days">
-          <span>5 days</span>
+        <span>{this.props.total}</span>
+          <span>days</span>
         </div>
         <div className="spent-days">
-          <span>2 days</span>
+        <span>{this.props.spent}</span>
+          <span>days</span>
         </div>
         <div className="wait-days">
-          <span>1 sweat day</span>
+        <span>{this.props.wait}</span>
+          <span>days</span>
+        </div>
+        <div>
+        <span>{this.props.goal}</span>
         </div>
       </div>
     )
