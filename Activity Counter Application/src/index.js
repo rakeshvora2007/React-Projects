@@ -1,33 +1,27 @@
 import React from 'react';
 import { render } from 'react-dom';
+import './stylesheets/ui.scss'
+import './stylesheets/index.scss'
 import RunningDayCount from './components/RunningDayCount';
-import { RunningDayList } from './components/RunningDayList';
+import App from './components/App';
+import { Whoops } from './components/Whoops';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 window.React = React
 
 render(
-	<RunningDayList days={
-		[
-			{
-				place: "Austin",
-				date: new Date("1/2/2017"),
-				energyDrink: true,
-				excercise: true
-			},
-			{
-				place: "Fullerton",
-				date: new Date("2/2/2017"),
-				energyDrink: false,
-				excercise: true
-			},
-			{
-				place: "New York",
-				date: new Date("3/2/2017"),
-				energyDrink: true,
-				excercise: false
-			}
-		]
-	}
-	 						/>,
+	<Router>
+	<div>
+		<div>
+		<Route path="/" component={App}/>
+		<Route path="list-days" component={App}/>
+		<Route path="/list-days/:filter" component={App}/>
+		<Route path="add-day" component={App}/>
+		</div>
+		<div>
+		<Route path="/404" component={Whoops}/>
+		</div>
+	</div>
+	</Router>,
 	document.getElementById('react-container')
 )

@@ -14,12 +14,12 @@ h1, label {
 }
 
 div.app {
-  background-image: url('http://localhost:3333/rowdy.jpg');
+  background-image: url('http://localhost:3000/assets/img/rowdy.jpg');
   background-size: cover;
   background-position: center;
 }
 
-div.whoops-404 {
+div.whoops {
   background-color: white;
   font-size: 2em;
   display: flex;
