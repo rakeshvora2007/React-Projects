@@ -24,4 +24,4 @@ Add as many as activity to keep track of the events and can be stored when conne
 3. CD to the folder `cd React-Projects/Activity Counter Application`
 4. Run `> npm-install` to install the project dependencies
 5. Run the npm command `> npm start`
-6. Fire up your browser at `http://localhost:8080`
+6. Fire up your browser at `http://localhost:3000`
